@@ -1,0 +1,54 @@
+version: "2"
+
+networks:
+  SSISH-TCC-matheusLazaro-chaincode-net:
+    external: true
+
+services:
+  minio.SSISH:
+    container_name: minio.ssish
+    image: quay.io/minio/minio
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - ~/minio/data:/data
+    environment:
+      - MINIO_ROOT_USER=ssish
+      - MINIO_ROOT_PASSWORD=s1s2i3s4h5
+    command: server /data --console-address ":9001"
+    networks:
+      - SSISH-TCC-matheusLazaro-chaincode-net
+
+  ccapi.org.example.com:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 80:80
+    volumes:
+      - ./:/rest-server
+      - ../fabric/organizations:/fabric/organizations
+    logging:
+      options:
+        max-size: 50m  
+    environment:
+      - SDK_PATH=./config/configsdk-org.yaml
+      - USER=Admin
+      - ORG=org
+      - DOMAIN=example.com
+      - CHANNEL=mainchannel
+      - CCNAME=SSISH-TCC-matheusLazaro-chaincode
+      - FABRIC_GATEWAY_ENDPOINT=peer0.org.example.com:7051
+      - FABRIC_GATEWAY_NAME=peer0.org.example.com
+      - GOLANG_PROTOBUF_REGISTRATION_CONFLICT=warn
+
+      # Min.io variables
+      - MINIO_ENDPOINT=minio.ssish:9000
+      - MINIO_ROOT_USER=ssish
+      - MINIO_ROOT_PASSWORD=s1s2i3s4h5
+      - MINIO_BUCKET_NAME=ssish
+    working_dir: /rest-server
+    container_name: ccapi.org.example.com
+    networks:
+      - SSISH-TCC-matheusLazaro-chaincode-net

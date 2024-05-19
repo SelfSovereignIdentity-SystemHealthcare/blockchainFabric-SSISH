@@ -1,0 +1,91 @@
+[
+    {
+        "name": "secret",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    },
+    {
+        "name": "usuario",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    },
+    {
+        "name": "paciente",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    },
+    {
+        "name": "medico",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    },
+    {
+        "name": "profissional_saude",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    },
+    {
+        "name": "sensor",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    },
+    {
+        "name": "smartwatch",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    },
+    {
+        "name": "anamnese",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    },
+    {
+        "name": "exame",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    },
+    {
+        "name": "diagnostico",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    },
+    {
+        "name": "tratamento",
+        "requiredPeerCount": 0,
+        "maxPeerCount": 3,
+        "blockToLive": 1000000,
+        "memberOnlyRead": true,
+        "policy": "OR('org1MSP.member')"
+    }
+    
+]
