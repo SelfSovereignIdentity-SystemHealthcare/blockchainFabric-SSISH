@@ -24,7 +24,7 @@ func main() {
 			"*",
 		},
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
-		AllowHeaders:     []string{"Authorization", "Origin", "Content-Type"},
+		AllowHeaders: []string{"Authorization", "Origin", "Content-Type", "cache-control"},
 		AllowCredentials: true,
 	}))
 	go server.Serve(r, ctx)

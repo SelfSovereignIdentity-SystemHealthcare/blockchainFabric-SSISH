@@ -6,11 +6,12 @@ import (
 )
 
 var assetTypeList = []assets.AssetType{
-	assettypes.Anamnesis,
 	assettypes.Exam,
-	assettypes.Doctor,
-	assettypes.Patient,
 	assettypes.Diagnosis,
 	assettypes.Treatment,
-	assettypes.User,
+	assettypes.DID,
+	assettypes.SSISHEvent,
+	assettypes.CredentialVerification,
+	assettypes.VerifiableCredential,
+	assettypes.Wallet,
 }

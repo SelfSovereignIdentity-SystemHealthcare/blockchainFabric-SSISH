@@ -20,6 +20,7 @@ var Treatment = assets.AssetType{
 		},
 		{
 			Tag:      "timestamp",
+			IsKey:    true,
 			Required: true,
 			Label:    "Data e Hora",
 			DataType: "datetime",

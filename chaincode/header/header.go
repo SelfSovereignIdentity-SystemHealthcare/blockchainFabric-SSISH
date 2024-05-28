@@ -1,10 +1,10 @@
 package header
 
-var Name = "Blockchain STCS - Etapa 3 - Web3.0"
+var Name = "Blockchain - Self Sovereign Identity System for Healthcare - TCC Matheus Lázaro - Ciência da Computação - INF UFG"
 var Version = "1.0.0"
 var Colors = map[string][]string{
-	"@default": {"#4267B2", "#34495E", "#ECF0F1"},
+	"@default": {"#0084b9", "#0084b9", "#0084b9"},
 }
 var Title = map[string]string{
-	"@default": "Blockchain STCS - Etapa 3 - Web3.0",
+	"@default": "Blockchain - SSISH - TCC Matheus Lázaro - Ciência da Computação - INF UFG",
 }

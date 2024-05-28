@@ -54,36 +54,47 @@ Para implantação em produção, considere usar o GoFabric - https://gofabric.i
 <hr/>
 
 ## Assets:
-**User**: 
-- name: string (PK)
-- email: string
-- role: string
+**VerifiableCredential**
+- issuerHash: sha256 (CK)
+- receiverHash: sha256 (CK)
+- credentialType: string
+- credentialData: string
+- status: string
+
+**Wallet**
+- holderHash: sha256 (PK)
+- credentials: []->verifiableCredential
+- verifications: []->credentialVerification
+
+**DID**
+- walletHash: sha256 (CK)
+- userController: sha256 (CK)
+- publicKey: string
+- authenticationMethods: string: string
+- services: string
 - timestamp: datetime
-- gender: string
-- birthDate: datetime
-- phone: string
-- address: string
+- status: string
 
-**Doctor** (herda User)
-- crm: string (CK)
-- speciality: string
+**CredentialVerification**
+- verifierHash: sha256 (PK)
+- credentialHash: sha256
+- timestamp: datetime
+- result: string
 
-**Patient**:
-- cpf: cpf (CK)
-- anamnesis: ->anamnesis
+**SSISHEvent**
+- walletHash: sha256 (CK)
+- eventType: string (CK)
+- timestamp: datetime
+- eventDetails: string
 
 **Exam**:
-- patientHash: sha256 (CK)
-- doctorHask: sha256 (CK)
+- patientWalletHolderHash: sha256 (CK)
+- doctorWalletHolderHash: sha256 (CK)
 - timestamp: datetime
 - name: string
 - urlExamDocument: string
 - diagnosisHash: sha256
 - treatmentHash: sha256
-
-**Anamnesis**:
-- patient: ->patient (CK)
-- timestamp: datetime
 
 **Diagnosis**:
 - exam: ->exam (PK)

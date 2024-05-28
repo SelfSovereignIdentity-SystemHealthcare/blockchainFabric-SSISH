@@ -19,14 +19,14 @@ var CreateExam = tx.Transaction{
 	Args: []tx.Argument{
 		{
 			Required:    true,
-			Tag:         "patientHash",
+			Tag:         "patientWalletHolderHash",
 			Label:       "Patient Hash",
 			Description: "Reference to Patient Asset",
 			DataType:    "sha256",
 		},
 		{
 			Required:    true,
-			Tag:         "doctorHash",
+			Tag:         "doctorWalletHolderHash",
 			Label:       "Doctor Hash",
 			Description: "Reference to Doctor Asset",
 			DataType:    "sha256",
@@ -68,8 +68,8 @@ var CreateExam = tx.Transaction{
 		},
 	},
 	Routine: func(stub *sw.StubWrapper, req map[string]interface{}) ([]byte, errors.ICCError) {
-		patientHash, _ := req["patientHash"].(string)
-		doctorHash, _ := req["doctorHash"].(string)
+		patientWalletHolderHash, _ := req["patientWalletHolderHash"].(string)
+		doctorWalletHolderHash, _ := req["doctorWalletHolderHash"].(string)
 		timestamp, _ := req["timestamp"].(time.Time)
 		name, _ := req["name"].(string)
 		urlExamDocument, _ := req["urlExamDocument"].(string)
@@ -79,14 +79,14 @@ var CreateExam = tx.Transaction{
 		timestampString := timestamp.Format("2006-01-02T15:04:05.000Z")
 
 		examMap := map[string]interface{}{
-			"@assetType":      "exam",
-			"patientHash":     patientHash,
-			"doctorHash":      doctorHash,
-			"timestamp":       timestampString,
-			"name":            name,
-			"urlExamDocument": urlExamDocument,
-			"diagnosisHash":   diagnosisHash,
-			"treatmentHash":   treatmentHash,
+			"@assetType":              "exam",
+			"patientWalletHolderHash": patientWalletHolderHash,
+			"doctorWalletHolderHash":  doctorWalletHolderHash,
+			"timestamp":               timestampString,
+			"name":                    name,
+			"urlExamDocument":         urlExamDocument,
+			"diagnosisHash":           diagnosisHash,
+			"treatmentHash":           treatmentHash,
 		}
 
 		examAsset, err := assets.NewAsset(examMap)

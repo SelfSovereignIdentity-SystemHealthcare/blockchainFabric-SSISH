@@ -11,7 +11,7 @@ var Exam = assets.AssetType{
 	Description: "Informações do exame",
 	Props: []assets.AssetProp{
 		{
-			Tag:      "patientHash",
+			Tag:      "patientWalletHolderHash",
 			IsKey:    true,
 			Required: true,
 			Label:    "Hash do Paciente",
@@ -19,14 +19,16 @@ var Exam = assets.AssetType{
 			Writers:  []string{`org1MSP`, `orgMSP`},
 		},
 		{
-			Tag:      "doctorHash",
+			Tag:      "doctorWalletHolderHash",
 			Required: true,
+			IsKey:    true,
 			Label:    "Hash do Médico",
 			DataType: "sha256",
 			Writers:  []string{`org1MSP`, `orgMSP`},
 		},
 		{
 			Tag:      "timestamp",
+			IsKey:    true,
 			Required: true,
 			Label:    "Data e Hora",
 			DataType: "datetime",

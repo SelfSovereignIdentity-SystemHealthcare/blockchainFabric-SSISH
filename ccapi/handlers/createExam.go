@@ -20,13 +20,13 @@ const (
 )
 
 type CreateExamRequest struct {
-	PatientHash      string                `form:"patientHash" binding:"required"`
-	DoctorHash       string                `form:"doctorHash" binding:"required"`
-	Timestamp        string                `form:"timestamp" binding:"required"`
-	Name             string                `form:"name" binding:"required"`
-	UrlExamDocument  *multipart.FileHeader `form:"urlExamDocument" binding:"required"`
-	DiagnosisHash    string                `form:"diagnosisHash" binding:"required"`
-	TreatmentHash    string                `form:"treatmentHash" binding:"required"`
+	PatientWalletHolderHash      string                `form:"patientWalletHolderHash"`
+	DoctorWalletHolderHash       string                `form:"doctorWalletHolderHash"`
+	Timestamp                    string                `form:"timestamp"`
+	Name                         string                `form:"name"`
+	UrlExamDocument              *multipart.FileHeader `form:"urlExamDocument"`
+	DiagnosisHash                string                `form:"diagnosisHash"`
+	TreatmentHash                string                `form:"treatmentHash"`
 }
 
 func CreateExam(c *gin.Context) {
@@ -37,6 +37,17 @@ func CreateExam(c *gin.Context) {
 			"error": fmt.Errorf("failed to bind form: %w", err).Error(),
 		})
 		return
+	}
+
+	// Debugging logs
+	fmt.Println("PatientWalletHolderHash:", req.PatientWalletHolderHash)
+	fmt.Println("DoctorWalletHolderHash:", req.DoctorWalletHolderHash)
+	fmt.Println("Timestamp:", req.Timestamp)
+	fmt.Println("Name:", req.Name)
+	fmt.Println("DiagnosisHash:", req.DiagnosisHash)
+	fmt.Println("TreatmentHash:", req.TreatmentHash)
+	if req.UrlExamDocument != nil {
+		fmt.Println("UrlExamDocument:", req.UrlExamDocument.Filename)
 	}
 
 	// Ensure that the file is present and has a valid filename
@@ -115,8 +126,8 @@ func CreateExam(c *gin.Context) {
 
 	// Create new asset and put in ledger
 	txArgs := map[string]interface{}{
-		"patientHash":      req.PatientHash,
-		"doctorHash":       req.DoctorHash,
+		"patientWalletHolderHash":      req.PatientWalletHolderHash,
+		"doctorWalletHolderHash":       req.DoctorWalletHolderHash,
 		"timestamp":        timestamp.Format("2006-01-02T15:04:05.000Z"),
 		"name":             req.Name,
 		"urlExamDocument":  saveLocationExamDocument,

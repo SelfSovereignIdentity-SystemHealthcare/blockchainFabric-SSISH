@@ -4,31 +4,45 @@ import (
 	"github.com/hyperledger-labs/cc-tools/assets"
 )
 
-// Definição do asset User
-var User = assets.AssetType{
-	Tag:         "user",
-	Label:       "Usuário",
-	Description: "Informações do usuário",
+// Definição do asset DID
+var DID = assets.AssetType{
+	Tag:         "did",
+	Label:       "Identidade Digital Descentralizada",
+	Description: "Identidade digital vinculada a uma carteira",
 	Props: []assets.AssetProp{
 		{
-			Tag:      "email",
+			Tag:      "walletHash",
 			IsKey:    true,
 			Required: true,
-			Label:    "Email",
+			Label:    "Hash da Carteira",
+			DataType: "sha256",
+			Writers:  []string{`org1MSP`, `orgMSP`},
+		},
+		{
+			Tag:      "userController",
+			Required: true,
+			Label:    "Controlador do Usuário",
+			DataType: "sha256",
+			Writers:  []string{`org1MSP`, `orgMSP`},
+		},
+		{
+			Tag:      "publicKey",
+			Required: true,
+			Label:    "Chave Pública",
 			DataType: "string",
 			Writers:  []string{`org1MSP`, `orgMSP`},
 		},
 		{
-			Tag:      "name",
+			Tag:      "authenticationMethods",
 			Required: true,
-			Label:    "Nome",
+			Label:    "Métodos de Autenticação",
 			DataType: "string",
 			Writers:  []string{`org1MSP`, `orgMSP`},
 		},
 		{
-			Tag:      "role",
+			Tag:      "services",
 			Required: true,
-			Label:    "Função",
+			Label:    "Serviços",
 			DataType: "string",
 			Writers:  []string{`org1MSP`, `orgMSP`},
 		},
@@ -40,30 +54,9 @@ var User = assets.AssetType{
 			Writers:  []string{`org1MSP`, `orgMSP`},
 		},
 		{
-			Tag:      "gender",
+			Tag:      "status",
 			Required: true,
-			Label:    "Gênero",
-			DataType: "string",
-			Writers:  []string{`org1MSP`, `orgMSP`},
-		},
-		{
-			Tag:      "birthDate",
-			Required: true,
-			Label:    "Data de Nascimento",
-			DataType: "datetime",
-			Writers:  []string{`org1MSP`, `orgMSP`},
-		},
-		{
-			Tag:      "phone",
-			Required: true,
-			Label:    "Telefone",
-			DataType: "string",
-			Writers:  []string{`org1MSP`, `orgMSP`},
-		},
-		{
-			Tag:      "address",
-			Required: true,
-			Label:    "Endereço",
+			Label:    "Status",
 			DataType: "string",
 			Writers:  []string{`org1MSP`, `orgMSP`},
 		},
